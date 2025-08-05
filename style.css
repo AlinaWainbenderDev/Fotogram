@@ -1,0 +1,333 @@
+body{
+    font-family: "Figtree", sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/figtree-v8-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+} 
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+header { 
+    max-width: 100%;
+    background-color: rgb(10,34,44);
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #ccc;
+}
+
+.Fotogram_Logo {
+    height: auto;
+    max-height: 2.5em;
+    padding: 0.5em 1em;
+}
+
+main { 
+    max-width: 100%;
+    background-color: rgb(7,24,32);
+    color: white;
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 min(1.5em, 7%);
+}
+
+h1 { 
+    margin: 0;
+    text-align: center;
+    font-size: clamp(2rem, calc(5vw + 0.5rem), 3rem);
+    padding: min(1.5em, 7%);
+    white-space: nowrap;
+}
+
+h3 {
+    color: whitesmoke;
+    font-size: 1.5rem;
+    padding-left: 10px;
+}
+
+footer { 
+    max-width: 100%;
+    background-color: rgb(10,34,44);
+    height: 10dvh;
+}
+
+#photo-container{
+    gap: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+}
+
+.photo { 
+    max-width: 9%;
+    min-width: 80px;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border: 4px solid transparent; 
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.photo:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.778);
+}
+
+.photoDialog{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: auto 3/4;
+    object-fit: cover;
+}
+
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.463);
+}
+
+.d_none{
+    display: none;
+}
+
+.dialog{
+    position: fixed;
+    height: 90vh; 
+    width: 90vw;         
+    max-width: 400px;
+    background-color: #0d3240;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.arrowContainer {
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; 
+    padding: 20px 0;
+}
+
+.arr{
+    position: relative;
+    flex-shrink: 0;      
+    display: flex;  
+    background-color: #1e1e23;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: 20px;
+}
+
+.arr:hover{
+    cursor: pointer;
+}
+
+.arr div {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-top: 4px solid #a52036; 
+    border-left: 4px solid #a52036;
+    transform: rotate(45deg);
+    top: 17px;
+    left: 13px;
+}
+
+.right{
+    transform: rotate(90deg);
+}
+
+.left {
+    transform: rotate(-90deg);
+}
+
+.containerPictureIndex{
+    color: whitesmoke;
+     white-space: nowrap
+}
+
+.close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5em;
+    background-color:  #0d3240;
+    border: none;
+    outline: none; 
+}
+
+button:focus {
+  outline: 2px solid dodgerblue;
+}
+
+.close-button span {
+    color: whitesmoke;
+    font-size: 32px;
+}
+
+.close-button:hover{
+    cursor: pointer;
+    border: 2px solid rgba(245, 245, 245, 0.816);     
+    border-radius: 4px;          
+}
+
+.upperDialogContainer {
+    position: relative;
+    text-align: left; 
+    width: 100%;
+}
+
+.footerContainer{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.impressum {
+    text-align: center;
+}
+
+.impressum a{
+    color: black;
+}
+
+.datenschutzContainer {
+    padding: 0 60px;
+    color: black;
+}
+
+.datenschutzContainer h3{
+    color: black;
+}
+
+.datenschutzContainer a { 
+    color: black;
+}
+
+a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+@media (max-width: 800px) {
+    h1{
+        white-space: wrap;
+    }
+
+    .dialog{
+    max-height: 120dvh;
+    overflow: auto;
+    box-sizing: border-box;
+    max-height: 80vh;
+    }
+
+    #photo-container {
+        padding-top: 10px;
+    }
+}
+
+@media (max-width: 500px) { 
+  .dialog {
+    width: 90vw;
+    height: auto; 
+  }
+
+  .photoDialog{
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 6 / 4;
+    object-fit: cover;
+    height: auto;
+  }
+
+  .upperDialogContainer{
+    gap: 80px;
+  }
+}
+
+@media (max-width: 450px) {
+  .title-container h1{
+    padding: 20px 20px;
+    font-size: clamp(1rem, calc(5vw + 0.5rem), 3rem);
+  }
+
+  .datenschutzContainer h1 {
+    padding: 24px;
+  }
+
+  .impressum h1 {
+    padding: 24px;
+  }
+
+  .photoDialog{
+    width: 40vh;
+  }
+
+  .upperDialogContainer{
+    gap: 40px;
+  }
+
+  .arr{
+    margin: 40px;
+  }
+
+  .arrowContainer {
+    height: 5vh;
+    gap: 0px;
+    padding: 50px 0;
+}
+}
+
+@media (max-width: 350px) {
+    .photo {
+    min-width: 70px;
+    min-width: 70px;
+  }
+
+  .datenschutzContainer h1 {
+    padding: 16px;
+  }
+
+.datenschutzContainer{
+  padding: 0 30px;
+}
+
+  .impressum h1 {
+    padding: 16px;
+  }
+}
