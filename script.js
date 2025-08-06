@@ -80,7 +80,7 @@ function renderDialog(index){
           type="button"
           id="closeDialog"
           tabindex="0"
-          onclick="closeDialogWithBubblingPrevention(event)"
+          onclick="closeDialog(event)"
         >
           <span aria-hidden="true">&times;</span>
         </button>
@@ -137,22 +137,32 @@ function openOverlay(index){
 
 function openDialog(){
   const dialogRef = document.getElementById('myDialog'); 
-  dialogRef.showModal()
+  dialogRef.show()
 }
 
 function closeOverlay(){
   document.body.classList.remove("modal-open");
   const overlayRef = document.getElementById('overlay');
-  overlayRef.classList.add("d_none")
+  overlayRef.classList.add("d_none");
 }
 
-function closeDialogWithBubblingPrevention(event) {
+function closeDialog() {
   const dialogRef = document.getElementById('myDialog');
   dialogRef.close(); 
-  event.stopPropagation()
-
   closeOverlay();
 }
 
-  
-  
+function addOverlayClickCloseListener () {
+  const overlayRef = document.getElementById('overlay');
+
+  if (!overlayRef) return; 
+
+  overlayRef.addEventListener("click", function(event) {
+    if (event.target !== overlayRef) return;
+    closeDialog(event); 
+  });
+}
+
+document.addEventListener("DOMContentLoaded", addOverlayClickCloseListener);
+
+
